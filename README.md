@@ -61,6 +61,21 @@ The tracking skills ship with **placeholders** — written as `<TOKEN>` — that
 
 Keep the **area list identical across all four tracking skills** so tags and filters line up. `review-my-code` has no placeholders — its checklist is framework-agnostic and works on any stack as-is.
 
+### Or let Claude fill in the areas for you
+
+Don't want to pick the areas by hand? Drop this into Claude Code from your project root and let it propose them in plan mode first:
+
+```text
+Analyse this repo and identify the major areas of the codebase (top-level
+modules, services, or apps that a bug or feature would naturally belong to).
+Then replace the `<area-1> / <area-2> / …` placeholder in the add-bug,
+list-bugs, fix-bug, and add-feature skills with that list, using the same
+list in all four skills so tags and filters stay consistent. Do this in
+plan mode so I can approve the area list before any files are edited.
+```
+
+You can extend the same prompt to fill in `<TIMEZONE>` and the `<test command …>` mapping in `fix-bug` — Claude can infer the test commands from the project's `package.json`, `pyproject.toml`, `Makefile`, etc.
+
 ### Example: a Python API + React web app
 
 Say your repo has a Python API and a React frontend, with two areas, `api` and `web`. You'd edit each tracking skill to:
